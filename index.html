@@ -22,31 +22,21 @@ window.onload = function () {
         target = decodeURIComponent(target);
     } catch (e) {}
 
+    // попытка открыть приложение
     window.location.href = target;
 
+    // скрываем страницу сразу
+    document.body.style.display = "none";
+
+    // чистим URL и историю, чтобы не оставалось мусора
     setTimeout(() => {
-        document.getElementById("fallback").style.display = "block";
-        document.getElementById("link").href = target;
-        document.getElementById("link").innerText = target;
-    }, 1200);
+        window.history.replaceState({}, document.title, window.location.pathname);
+    }, 1000);
 };
 </script>
 
-<style>
-body { font-family: Arial; text-align: center; padding: 40px; }
-#fallback { display: none; margin-top: 20px; }
-a { word-break: break-all; }
-</style>
-
 </head>
 <body>
-
-<h2>Redirecting...</h2>
-
-<div id="fallback">
-    <p>If nothing happened:</p>
-    <a id="link" href="#"></a>
-</div>
-
+<h3>Redirecting...</h3>
 </body>
 </html>
